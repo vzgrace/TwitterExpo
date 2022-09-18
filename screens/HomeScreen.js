@@ -10,6 +10,7 @@ import {initializeApp} from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut} from 'firebase/auth'
 
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCM-7c0x6bUmTgy5qeA2RW8guzhnzSshEI",
     authDomain: "twitter-app-6e4ba.firebaseapp.com",
@@ -42,6 +43,7 @@ const HomeScreen = () => {
         >
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>
+        <Text>Words</Text>
       </View>
     )
 }

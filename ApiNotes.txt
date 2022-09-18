@@ -1,0 +1,4 @@
+React: Framework for building user interfaces. Stricly front-end
+Runs on client as Single Page app, but can be Full Stack with server / API
+-Structures the view layer of app.
+JSX - Dynamic Markup (Javascript syntax extension) - formatted like HTML but is JS
