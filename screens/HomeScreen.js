@@ -4,11 +4,15 @@ import {
     Text,
     View,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    Keyboard
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {initializeApp} from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut} from 'firebase/auth'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
 
 const firebaseConfig = {
@@ -20,13 +24,16 @@ const firebaseConfig = {
     appId: "1:859807224579:web:dfb4e82a721d0ab73b4f36"
   };
 
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
 
 
 
 const HomeScreen = () => {
-  // the user inputted in the text field is saved into the variable searchUser
+  //database stuff
+  const todoRef = firebase.firestore().collection('searchUserData');
+
+  //whatever the user inputs is stored in "searchUser"
   const [searchUser, setsearchUser] = useState('')
     const navigation = useNavigation()
     //sign out button functionality
@@ -40,7 +47,26 @@ const HomeScreen = () => {
 
     //This function is triggered when search button is pressed
     const handleSearch = () => {
-      alert(searchUser) //for now, i have the app display whatever was entered in the text field
+   
+      //check if we have new field data
+      if (searchUser && searchUser.length > 0){
+        //timestamp
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        const data = {
+          heading: searchUser, //adding the username the user inputs
+          createdAt: timestamp //timestamp just because
+        };
+
+        todoRef
+          .add(data)
+          .then(() => {
+            console.log('added user: ' + data.heading)
+            setsearchUser(' ');
+          })
+          .catch((error) => {
+            console.error("error")
+          })
+      }
     }
 
     return (

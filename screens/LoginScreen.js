@@ -12,7 +12,6 @@ import {initializeApp} from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth'
 import { useNavigation } from '@react-navigation/native';
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyCM-7c0x6bUmTgy5qeA2RW8guzhnzSshEI",
     authDomain: "twitter-app-6e4ba.firebaseapp.com",
@@ -30,7 +29,6 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigation = useNavigation()
-    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             if (user) {
