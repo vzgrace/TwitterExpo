@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {initializeApp} from "firebase/app";
@@ -25,7 +26,10 @@ const auth = getAuth();
 
 
 const HomeScreen = () => {
+  // the user inputted in the text field is saved into the variable searchUser
+  const [searchUser, setsearchUser] = useState('')
     const navigation = useNavigation()
+    //sign out button functionality
     const handleSignOut = () => {
         signOut(auth)
         .then(() => {
@@ -33,19 +37,78 @@ const HomeScreen = () => {
         })
         .catch(error => alert(error.message))
     }
+
+    //This function is triggered when search button is pressed
+    const handleSearch = () => {
+      alert(searchUser) //for now, i have the app display whatever was entered in the text field
+    }
+
     return (
+      
         <View style={styles.container}>
-        <Text>Email: {auth.currentUser?.email}</Text>
+            <Text>User Email: {auth.currentUser?.email}</Text>
+
+
+        {/* Sign out buttton */}
         <TouchableOpacity
           onPress={handleSignOut}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>
+
+
+        {/* Search button */}
+        <View style = {styles.searchCont}>
+          <View style = {styles.inputCont}>
+            <TextInput
+            style={styles.input}
+            onChangeText={text => setsearchUser(text)}
+            value={searchUser}
+            placeholder="username"
+            />
+          </View>
+        <TouchableOpacity
+          onPress={handleSearch} 
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Search</Text>
+        </TouchableOpacity>
+        </View>
+
+      
       </View>
     )
 }
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    padding: 10
+  },
+  inputCont: {
+    width: 200,
+    marginRight: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray'
+  },
+  searchCont:{
+    marginTop: 50,
+    padding: 10,
+    flexDirection: 'row'
+  },
+  button: {
+    borderRadius: 15,
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    width: 70,
+    height: 25,
+    alignItems: 'center'
+  },
+  buttonText: {
+    alignSelf: 'center', 
+    paddingTop: 5,
+    paddingBottom: 5
+  }
+})
