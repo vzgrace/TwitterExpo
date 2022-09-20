@@ -53,14 +53,14 @@ const HomeScreen = () => {
         //timestamp
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
-          heading: searchUser, //adding the username the user inputs
+          username: searchUser, //adding the username the user inputs
           createdAt: timestamp //timestamp just because
         };
 
         todoRef
           .add(data)
           .then(() => {
-            console.log('added user: ' + data.heading)
+            console.log('added user: ' + data.username)
             setsearchUser(' ');
           })
           .catch((error) => {
