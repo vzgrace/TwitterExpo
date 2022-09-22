@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 //import TestAPI from './TestAPI.js'
-//const needle = require('needle');
+const needle = require('twitter');
 import {
     StyleSheet,
     Text,
