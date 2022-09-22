@@ -76,9 +76,8 @@ def create_Timeline_url():
 
 
 def main():
-    usernames = input("Enter username(s) separated by commas. Enter 'N' to use default usernames: ")
-    if usernames == "N":
-        usernames = "TwitterDev,Twitter"
+    usernames = input("Enter username(s) separated by commas: ")
+    if 
     addition = "usernames="
     usernames = addition + usernames
     Userurl = create_UserLookup_url(usernames)
