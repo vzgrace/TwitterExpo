@@ -87,7 +87,7 @@ def connect_to_endpoint(url):
         )
     return response.json()
 
-def parse_json(json_response, X): #This does not work yet
+def parse_json(json_response, X):
     dump_file = json.dumps(json_response, sort_keys=True)
     tree = json.loads(dump_file)
     X_list = tree[X]
@@ -111,10 +111,8 @@ def main():
     #json_response = connect_to_endpoint(Userurl)
     #print(json.dumps(json_response, indent=4, sort_keys=True))
     json_response = connect_to_endpoint(Tweeturl)
-    #print(json_response['data'][0]['text']) #in this format, this is how to get the Tweet text
-    tweet = json_response['data'][0]['text']
-    analyze_text_sentiment(tweet)
-
+    #print(json.dumps(json_response, indent=4, sort_keys=True)) 
+    dump_file = json.dumps(json_response, indent=4, sort_keys=True)
 
 
 

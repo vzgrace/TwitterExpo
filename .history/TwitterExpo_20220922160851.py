@@ -48,9 +48,7 @@ def create_TweetLookup_url():
     # in_reply_to_user_id, lang, non_public_metrics, organic_metrics,
     # possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets,
     # source, text, and withheld
-
-    #ids = "ids=1278747501642657792,1255542774432063488"
-    ids = "ids=1278747501642657792"
+    ids = "ids=1278747501642657792,1255542774432063488"
     # You can adjust ids to include a single Tweets.
     # Or you can add to up to 100 comma-separated IDs
     url = "https://api.twitter.com/2/tweets?{}&{}".format(ids, tweet_fields)
@@ -87,13 +85,6 @@ def connect_to_endpoint(url):
         )
     return response.json()
 
-def parse_json(json_response, X): #This does not work yet
-    dump_file = json.dumps(json_response, sort_keys=True)
-    tree = json.loads(dump_file)
-    X_list = tree[X]
-    list = X_list[0]
-    return X
-
 def create_Timeline_url():
     user_id = 2244994945
     return "https://api.twitter.com/2/users/{}/tweets".format(user_id)
@@ -108,14 +99,10 @@ def main():
     #Userurl = create_UserLookup_url(usernames)
     Tweeturl = create_TweetLookup_url()
     #Timelineurl = create_Timeline_url()
-    #json_response = connect_to_endpoint(Userurl)
+    json_response = connect_to_endpoint(Userurl)
     #print(json.dumps(json_response, indent=4, sort_keys=True))
-    json_response = connect_to_endpoint(Tweeturl)
-    #print(json_response['data'][0]['text']) #in this format, this is how to get the Tweet text
-    tweet = json_response['data'][0]['text']
-    analyze_text_sentiment(tweet)
-
-
+    #json_response = connect_to_endpoint(Tweeturl)
+    #print(json.dumps(json_response, indent=4, sort_keys=True))
 
 
 if __name__ == "__main__":

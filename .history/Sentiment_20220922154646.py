@@ -1,0 +1,3 @@
+'''
+This is authentication for the google natual language processing api
+'''
