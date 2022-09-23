@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 //import TestAPI from './TestAPI.js'
-const needle = require('twitter');
+// const needle = require('twitter');
 import {
     StyleSheet,
     Text,
@@ -72,11 +72,17 @@ const HomeScreen = () => {
     }
 
     return (
-      
+   
         <View style={styles.container}>
-            <Text>User Email: {auth.currentUser?.email}</Text>
+        <View style={styles.top}>
+                <Text style={styles.TwitterText}>
+                    Twitter Analysis
+                </Text>
+            </View>
+        <View style = {styles.emailSignout}>
+            <Text>User's Email: {auth.currentUser?.email}</Text>
 
-
+        <View style={styles.signOutCont}> 
         {/* Sign out buttton */}
         <TouchableOpacity
           onPress={handleSignOut}
@@ -85,7 +91,8 @@ const HomeScreen = () => {
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>
 
-
+        </View>
+        </View>
         {/* Search button */}
         <View style = {styles.searchCont}>
           <View style = {styles.inputCont}>
@@ -98,9 +105,9 @@ const HomeScreen = () => {
           </View>
         <TouchableOpacity
           onPress={handleSearch} 
-          style={styles.button}
+          style={styles.searchButton}
         >
-          <Text style={styles.buttonText}>Search</Text>
+          <Text style={styles.searchbuttonText}>Search</Text>
         </TouchableOpacity>
         </View>
 
@@ -113,16 +120,16 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   container:{
-    padding: 10
+      alignItems: 'center'
   },
   inputCont: {
     width: 200,
     marginRight: 10,
     borderBottomWidth: 1,
-    borderBottomColor: 'gray'
+    borderBottomColor: '#1DA1F2',
   },
   searchCont:{
-    marginTop: 50,
+    marginTop: 200,
     padding: 10,
     flexDirection: 'row'
   },
@@ -134,9 +141,52 @@ const styles = StyleSheet.create({
     height: 25,
     alignItems: 'center'
   },
+  searchButton:{
+    borderRadius: 15,
+    // borderWidth: 1,
+    // borderColor: 'gray',
+    width: 80,
+    height: 25,
+    alignItems: 'center',
+    backgroundColor: '#1DA1F2',
+  },
   buttonText: {
     alignSelf: 'center', 
     paddingTop: 5,
-    paddingBottom: 5
-  }
+    paddingBottom: 5,
+    fontSize: 12
+  },
+  searchbuttonText:{
+    alignSelf: 'center', 
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: 12,
+    color: 'white',
+  
+  },
+  top: {
+    alignSelf: 'stretch',
+    height: 120,
+    flexDirection: 'row',
+    backgroundColor: '#1DA1F2',
+    alignItems: 'center',
+    // centers items vertically
+    justifyContent: 'center',
+    // centers items horizontally
+    
+},
+TwitterText: {
+    fontFamily: 'Gill Sans',
+    color: "white",
+    fontSize: 30
+},
+emailSignout:{
+  padding: 10,
+  flexDirection:'row',
+
+},
+signOutCont:{
+  marginLeft: 20
+}
+
 })
