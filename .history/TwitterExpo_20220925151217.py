@@ -105,7 +105,7 @@ def main():
     #if usernames == "N":
     #    usernames = "TwitterDev,Twitter"
     #addition = "usernames="
-    usernames = "usernames=TwitterDev"
+    usernames = "TwitterDev"
     #Userurl = create_UserLookup_url(usernames)
     Tweeturl = create_TweetLookup_url()
     #Timelineurl = create_Timeline_url()
